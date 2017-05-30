@@ -8,7 +8,7 @@
 
 ## Graphical User Interface Example:
 
-###Text File Format
+### Text File Format
 
      0 -> 1
  
@@ -28,8 +28,6 @@
  
      2 -> 8
  
-     2 -> 8
- 
      1 -> 9
  
      10 -> 1
@@ -39,32 +37,6 @@
      10 -> 1
   
      10 -> 1
- 
-     10 -> 1
- 
-     10 -> 1
-  
-     10 -> 1
- 
-     10 -> 1
-  
-     10 -> 1
- 
-     10 -> 1
-
-     10 -> 1
-
-     8 -> 6
-
-     8 -> 6
-
-     8 -> 6
-
-     8 -> 6
-
-     8 -> 6
-
-     8 -> 6
 
      8 -> 6
 
@@ -76,7 +48,7 @@
      NOTE: Some of the edges are repeated because i want to illustrate the coloring of the edges that ocur the most.
      This is specified or breafly explaing at the "What Happens:" Section in the last paragraph.
 
-###Output Image of the Above Graph:
+### Output Image of the Above Graph:
 
  ![Alt text](example_image.png)
 

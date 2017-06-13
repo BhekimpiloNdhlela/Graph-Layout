@@ -82,17 +82,17 @@ public class GraphNodeOrdering {
   private void orderRankSet(HashMap<Integer, Integer[]> rankMap, HashMap<Integer, Integer[]> edgeMap) {
     int numberOfRanks = rankMap.size();
     //do not consider the sMin rank because it is already ordered
-    for(int i = 2; i < numberOfRanks; i++) {
+    for(int i = 2; i < numberOfRanks; ++i) {
       Integer []orderingRank         = rankMap.get(i);                   //ordering rank set
       Integer []previousRank         = rankMap.get(i - 1);               //previous rank set
       Double  []orderingIndex        = new Double[orderingRank.length];  //the array to order with respect to.
       if(orderingRank.length > maxRankSize) maxRankSize = orderingRank.length;
       if(orderingRank.length == 1 || previousRank.length == 1) continue; //no need to order ranks of this atribute.
 
-      for(int k = 0; k < orderingRank.length; k++) {
+      for(int k = 0; k < orderingRank.length; ++k) {
         Integer []aEdgeList          = edgeMap.get(orderingRank[k]);     //edge adjacency list for the ordering element at hand
         Double indexSumOfAdjEdges    = 0.0;
-        for(int l = 0; l < aEdgeList.length; l++){
+        for(int l = 0; l < aEdgeList.length; ++l){
           //the sum of the index of nodes adjacent to the ordering rank element at hand.
           indexSumOfAdjEdges = indexSumOfAdjEdges + getNodeIndex(previousRank, aEdgeList[l]) + 1.0 ;
         } orderingIndex[k] = indexSumOfAdjEdges / (aEdgeList.length * 1.0); //Barycenter step
@@ -123,10 +123,10 @@ public class GraphNodeOrdering {
     StringBuilder sb   = new StringBuilder("Ordered Nodes of the Graph : \n");
     int graphMapSize   = rankMap.size();
     Integer[] rankInput;
-    for(int w = 1; w < graphMapSize; w++) {
+    for(int w = 1; w < graphMapSize; ++w) {
       rankInput = rankMap.get(w);
       sb.append(w).append("\t");
-      for(int j = 0; j < rankInput.length; j++) {
+      for(int j = 0; j < rankInput.length; ++j) {
         sb.append(rankInput[j]).append(" ");
       } sb.append("\n");
     } return sb.toString();

@@ -96,9 +96,9 @@ public class GraphOutput {
     double [][]nodeProperties   = new double[4][graphFinalOrder];
     int counter                 = 0;
 
-    for(int i = 1; i < numberOfRanks ; i++){
+    for(int i = 1; i < numberOfRanks ; ++i){
       Integer[] rank = graphMap.get(i);
-      for(int j = 0; j < rank.length; j++){
+      for(int j = 0; j < rank.length; ++j){
         //x and y scaling divide 200 because of the scale that is set
         double xSpacing             = (xScale * 1.0) / ((rank.length + 1) * 1.0);
         double ySpacing             = (yScale * 1.0) / ((numberOfRanks) * 1.0);
@@ -135,7 +135,7 @@ public class GraphOutput {
 
     frame.setResizable(false);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setSize(new Dimension(900 ,900));
+    frame.setSize(new Dimension(900 ,700));
     frame.setTitle(" GRAPH OUT PUT CANVAS");
     frame.setVisible(true);
   }
@@ -153,8 +153,8 @@ public class GraphOutput {
 
     for(int i = 0; i < this.graphFinalOrder; i++) {
      Integer[]  aEdges = aEdgeMap.get((int)nodeProperties[0][i]);
-      for(int j = 0; j < aEdges.length; j++) {
-        for(int k = 0; k < this.graphFinalOrder; k++) {
+      for(int j = 0; j < aEdges.length; ++j) {
+        for(int k = 0; k < this.graphFinalOrder; ++k) {
           if((int)nodeProperties[0][k] == (aEdges[j])) {
             // draw the lines or edges of the directed graph.
             Integer edgeOccurence = edgeOccurrences.get((int)nodeProperties[0][i] + " -> " + (int)nodeProperties[0][k]);
@@ -191,7 +191,7 @@ public class GraphOutput {
       String []currentEdge = temp.split(" -> ");
       Integer edgeOccurance = edgeCount.get(temp);
       sigmaEdge += edgeOccurance;
-      for(int i = 1; i < currentEdge.length; i++) {
+      for(int i = 1; i < currentEdge.length; ++i) {
         edgeOccurrences.put((currentEdge[i - 1] + " -> " + currentEdge[i]), edgeCount.get(temp));
         tempSet.add(edgeCount.get(temp));
       }
@@ -201,7 +201,7 @@ public class GraphOutput {
   }
 
   /**
-   * Find and store the top three edges that occur the most int the directed graph.
+   * Find and store the top three edges that occur the most in the directed graph.
    * @param edgeTally            the number of times an edge occur
    * @return topOccuringEdges    the top 3 occurring edges
    */
@@ -231,7 +231,7 @@ public class GraphOutput {
    * @param nodeProperties    an Integer array containing the node: coordinates, ranks and names.
    */
   private void drawVertices(double [][]nodeProperties) {
-    for(int i = 0; i < graphFinalOrder; i++) {
+    for(int i = 0; i < graphFinalOrder; ++i) {
       if(nodeProperties[0][i] < graphInitOrder) {
         //draw a filled circle representing the node/ vertex.
         StdDraw.setPenColor(new Color(0, 0, 0));
@@ -261,7 +261,7 @@ public class GraphOutput {
       outPutStream.println("Node Name:\t" + "Rank Of Node:\t\t" + "Coordinates (x, y):");
       sBuilder.append("Node Name:\tRank Of Node:\t\tCoordinates(x,y):\n");
       //write to the output text file.
-      for(int i = 0; i < newGraphOrder; i++) {
+      for(int i = 0; i < newGraphOrder; ++i) {
         int nameNode        = (int)nodeProperties[0][i];
         int rankNode        = (int)nodeProperties[1][i];
         double xCoordinate  = nodeProperties[2][i];

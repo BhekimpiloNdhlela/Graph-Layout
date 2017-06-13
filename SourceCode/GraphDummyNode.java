@@ -18,7 +18,8 @@ public class GraphDummyNode {
   private Queue<String> adjEdgesAfter;
 
   /**
-   * Data-type that puts the dummy nodes for the edge pline in to both the map of the graph and the adjacency list map.
+   * Data-type that puts the dummy nodes for the edge pline in to both the map of the graph and the adjacency list
+   * map.
    * @param digraph     the directed graph object.
    * @param graphMap    the rank map of the graph.
    */
@@ -33,8 +34,9 @@ public class GraphDummyNode {
   }
 
   /**
-   * acquire the new graph rank map after inserting the dummy nodes or vertices to the rank map, if the graph has 10 nodes
-   * dummy nodes will be symbolized by 11, 12, 13 etc, depending on the number of dummy nodes the graph requires.
+   * acquire the new graph rank map after inserting the dummy nodes or vertices to the rank map, if the graph has
+   * 10 nodes dummy nodes will be symbolized by 11, 12, 13 etc, depending on the number of dummy nodes the graph
+   * requires.
    * @return graphMap    the new graph map that contains the dummy nodes/ vertices
    */
   public HashMap<Integer, Integer[]> getNewGraphMap() {
@@ -42,7 +44,8 @@ public class GraphDummyNode {
   }
 
   /**
-   * acquire the new map that has the number of occurrences of edges after inserting dummy nodes or vertices to the graph.
+   * acquire the new map that has the number of occurrences of edges after inserting dummy nodes or vertices
+   * to the graph.
    * @return edgeCountMap    the map that has the number of edge occurrences.
    */
   public HashMap<String, Integer> getNewEdgeCountMap() {
@@ -50,7 +53,8 @@ public class GraphDummyNode {
   }
 
   /**
-   * Acquire the new edge adjacent list that contains the dummy nodes of the directed graph that is being used by the program.
+   * Acquire the new edge adjacent list that contains the dummy nodes of the directed graph that is being
+   * used by the program.
    * @return aEdgeMap    the new edge adjacent list of the graph
    */
   public HashMap<Integer, Integer[]> getNewAdjEdjeMap() {
@@ -90,8 +94,9 @@ public class GraphDummyNode {
   }
 
   /**
-   * Adds the dummy nodes between the top vertex and the bottom vertex of that subgraph graph, for example: if i have an edge
-   * for example 3 -> 4 and they need dummy node then the resulting string will be 3 -> 5 -> 6 -> 4, were 5 & 6 are dummy nodes.
+   * Adds the dummy nodes between the top vertex and the bottom vertex of that subgraph graph, for
+   * example: if i have an edge for example 3 -> 4 and they need dummy node then the resulting string
+   * will be 3 -> 5 -> 6 -> 4, were 5 & 6 are dummy nodes.
    * @param edgeCountMap   the map that contains the number of edge occurrences
    */
   public void addDummyNodesToMap(HashMap<String, Integer> edgeCountMap) {
@@ -189,14 +194,14 @@ public class GraphDummyNode {
     aEdgeMap.put(topV, rCopy.toArray(new Integer[rCopy.size()]));
 
     for(Integer i = 1; i < sEdges.length - 1 ; i++) {
-      extEdgemap = new Integer[1];
+      extEdgemap    = new Integer[1];
       extEdgemap[0] = Integer.parseInt(sEdges[i + 1]);
-      newIndex = Integer.parseInt(sEdges[i]);
+      newIndex      = Integer.parseInt(sEdges[i]);
       aEdgeMap.put(newIndex, extEdgemap);
     }
     //update the rank Map of the graph by adding the dummy node to the map.
     Integer[] workingRank;
-    Integer [] extRank;
+    Integer[] extRank;
 
     for(int i = 1; i < sEdges.length - 1 ; i++) {
       workingRank   = graphMap.get(Integer.parseInt(sRanks[i]));
@@ -210,7 +215,7 @@ public class GraphDummyNode {
   }
 
   /**
-   *String representation of the data type, [for: unit testing and, or debuging purposes]
+   * String representation of the data type, [for: unit testing and, or debuging purposes]
    */
   public String toString() {
     StringBuilder sB = new StringBuilder(100);

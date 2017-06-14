@@ -26,6 +26,7 @@ public class GraphOutput {
   private final int numberOfRanks;
   private int yScale = 0;
   private int xScale = 0;
+  private double[][] nodeProperties;
 
   /**
    * Constructor of the object that Draws the image of the directed graph, writes the final coordinates of both
@@ -75,7 +76,7 @@ public class GraphOutput {
    * @throws  FileNotFoundException      if file DNE [it is however, pointless because the file is initialized internally]
    */
   public void graphOutputProcedure() throws FileNotFoundException{
-    double [][] nodeProperties = deriveCordinates();
+    nodeProperties = deriveCordinates();
     writeFinalCoordFile(nodeProperties, graphFinalOrder);
     drawEdges(nodeProperties, getTopOccuringEdges());
     drawVertices(nodeProperties);
@@ -97,12 +98,10 @@ public class GraphOutput {
     for(int i = 1; i < numberOfRanks ; ++i){
       Integer[] rank = graphMap.get(i);
       for(int j = 0; j < rank.length; ++j){
-        //x and y scaling divide 200 because of the scale that is set
         double xSpacing             = (xScale * 1.0) / ((rank.length + 1) * 1.0);
         double ySpacing             = (yScale * 1.0) / ((numberOfRanks) * 1.0);
         nodeProperties [0][counter] = rank[j] * 1.0;
         nodeProperties [1][counter] = i * 1.0;
-        //for perfect symmetry i should use doubles instead
         nodeProperties [2][counter] = (xSpacing * (j + 1));
         nodeProperties [3][counter] = (ySpacing * i);
         counter++;
@@ -125,7 +124,6 @@ public class GraphOutput {
     JFrame frame           = new JFrame();
     JScrollPane scrollPane = new JScrollPane(StdDraw.getFrame().getContentPane());
 
-    //scrollPane.setPreferredSize(new Dimension(width, height));
     scrollPane.getViewport().setBackground(new Color (39, 85, 99));
     graphOutputProcedure();
     StdDraw.draw();
@@ -154,7 +152,6 @@ public class GraphOutput {
       for(int j = 0; j < aEdges.length; ++j) {
         for(int k = 0; k < this.graphFinalOrder; ++k) {
           if((int)nodeProperties[0][k] == (aEdges[j])) {
-            // draw the lines or edges of the directed graph.
             Integer edgeOccurence = edgeOccurrences.get((int)nodeProperties[0][i] + " -> " + (int)nodeProperties[0][k]);
             //Set Color equals to Red for edges that have the most occurrence.
             if(edgeOccurence.equals(topOccuringEdges[0]) && !topOccuringEdges[0].equals(1)) {
@@ -217,9 +214,7 @@ public class GraphOutput {
         topOccurringEdges[2] = topOccurringEdges[1];
         topOccurringEdges[1] = current;
       //put 3rd top occurring edge.
-      }else if(current > topOccurringEdges[2]) {
-        topOccurringEdges[2] = current;
-      }
+      }else if(current > topOccurringEdges[2]) { topOccurringEdges[2] = current; }
     } return topOccurringEdges;
   }
 
@@ -249,24 +244,18 @@ public class GraphOutput {
    * @param  nodeProperties         an Integer array containing the node: coordinates, ranks and names.
    * @param  newGraphOrder          the new Graph order/ size with dummy nodes included.
    */
-  private void writeFinalCoordFile(double [][] nodeProperties, int newGraphOrder){
-    //sBuilder is for the toString method of the drawing object it i decided to kill to birds with one stone
-    //although i just increased my object overhead.
-    sBuilder                  = new StringBuilder(10000);
-    String outPutTextFile     = new String("output.txt");
+  private void writeFinalCoordFile(double [][] nodeProperties, int graphFinalOrder){
+    String outPutTextFile       = new String("output.txt");
     try {
       PrintWriter outPutStream  = new PrintWriter(outPutTextFile);
       outPutStream.println("Node Name:\t" + "Rank Of Node:\t\t" + "Coordinates (x, y):");
-      sBuilder.append("Node Name:\tRank Of Node:\t\tCoordinates(x,y):\n");
       //write to the output text file.
-      for(int i = 0; i < newGraphOrder; ++i) {
+      for(int i = 0; i < graphFinalOrder; ++i) {
         int nameNode        = (int)nodeProperties[0][i];
         int rankNode        = (int)nodeProperties[1][i];
         double xCoordinate  = nodeProperties[2][i];
         double yCoordinate  = nodeProperties[3][i];
         outPutStream.println("\t"+nameNode+"\t\t\t["+rankNode+"]\t\t\t("+xCoordinate+" , "+yCoordinate+")");
-        sBuilder.append("\t").append((int)nameNode).append("\t\t\t[").append((int)rankNode).append("]\t\t\t(");
-        sBuilder.append((int)xCoordinate).append(" , ").append((int)yCoordinate).append(")\n");
         outPutStream.flush();
       }
       outPutStream.close();
@@ -277,6 +266,16 @@ public class GraphOutput {
    * String representation of the object or the Data Type [for: Debuging and or Unit Testing]
    */
   public String toString(){
-    return sBuilder.toString();
+    StringBuilder sb = new StringBuilder(10000);
+    sb.append("Node Name:\tRank Of Node:\t\tCoordinates(x,y):\n");
+     
+    for(int i = 0; i < graphFinalOrder; ++i){  
+      int nameNode        = (int)nodeProperties[0][i];
+      int rankNode        = (int)nodeProperties[1][i];
+      double xCoordinate  = nodeProperties[2][i];
+      double yCoordinate  = nodeProperties[3][i];
+      sb.append("\t").append((int)nameNode).append("\t\t\t[").append((int)rankNode).append("]\t\t\t(");
+      sb.append((int)xCoordinate).append(" , ").append((int)yCoordinate).append(")\n");
+    } return sBuilder.toString();
   }
 }

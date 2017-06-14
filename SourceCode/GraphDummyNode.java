@@ -241,9 +241,7 @@ public class GraphDummyNode {
       sB.append(i + "\t");
       for(int j = 0; j < aEdgeInput.length; j++){
         sB.append(aEdgeInput[j] + " ");
-      }
-      sB.append("\n");
-    }
-    return (sB.toString());
+      } sB.append("\n");
+    } return (sB.toString());
   }
 }

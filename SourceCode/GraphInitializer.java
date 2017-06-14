@@ -149,9 +149,10 @@ public class GraphInitializer{
   private boolean isEdgeDuplicate(String edge){
     Integer oldTally = frequencyOfEdges.get(edge);
     boolean duplicate = false;
-    if(oldTally == null) {
-      oldTally = 0;
-    } else { duplicate = true; }
+
+    if(oldTally == null)  oldTally  = 0;
+    else                  duplicate = true; 
+
     frequencyOfEdges.put(edge, oldTally + 1);
     return duplicate;
   }

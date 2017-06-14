@@ -148,7 +148,7 @@ public class GraphRanking {
         double longDist = acyclicLP.distTo(sMin[j]);
         if(longDist != Double.NEGATIVE_INFINITY){
           //put the longest path distance into the lPath array if there is a path.
-          if(longDist > lPath){ lPath = (int)longDist; }
+          lPath = (longDist > lPath) ? (int)longDist : lPath; 
         }
       }
       int p = lPath + 1;

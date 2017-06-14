@@ -86,19 +86,21 @@ public class GraphNodeOrdering {
       Integer []orderingRank         = rankMap.get(i);                   //ordering rank set
       Integer []previousRank         = rankMap.get(i - 1);               //previous rank set
       Double  []orderingIndex        = new Double[orderingRank.length];  //the array to order with respect to.
-      if(orderingRank.length > maxRankSize) maxRankSize = orderingRank.length;
+      maxRankSize = (orderingRank.length > maxRankSize) ? orderingRank.length : maxRankSize;
       if(orderingRank.length == 1 || previousRank.length == 1) continue; //no need to order ranks of this atribute.
 
       for(int k = 0; k < orderingRank.length; ++k) {
-        Integer []aEdgeList          = edgeMap.get(orderingRank[k]);     //edge adjacency list for the ordering element at hand
-        Double indexSumOfAdjEdges    = 0.0;
+        //edge adjacency list for the ordering element at hand
+        Integer []aEdgeList          = edgeMap.get(orderingRank[k]);            Double indexSumOfAdjEdges    = 0.0;
         for(int l = 0; l < aEdgeList.length; ++l){
           //the sum of the index of nodes adjacent to the ordering rank element at hand.
           indexSumOfAdjEdges = indexSumOfAdjEdges + getNodeIndex(previousRank, aEdgeList[l]) + 1.0 ;
         } orderingIndex[k] = indexSumOfAdjEdges / (aEdgeList.length * 1.0); //Barycenter step
       }
-      Merge.sort(orderingIndex, orderingRank);   //order the rank set by sorting it with respect to the ordering index.
-      rankMap.put(i, orderingRank);              //update the rank map with the ordered rank set.
+      //order the rank set by sorting it with respect to the ordering index.
+      Merge.sort(orderingIndex, orderingRank);
+      //update the rank map with the ordered rank set.
+      rankMap.put(i, orderingRank);
     }
   }
 
@@ -109,14 +111,13 @@ public class GraphNodeOrdering {
   * @param  nodeToFind     the node that is being searched for.
   **/
   private double getNodeIndex(Integer[] pRank, Integer nodeToFind) {
-    for(int i = 0; i < pRank.length; i++){
-      if(nodeToFind.equals(pRank[i])) { return i; }
+    for(int i = 0; i < pRank.length; i++) {
+      if(nodeToFind.equals(pRank[i])) return i;
     } return -1.0;
   }
 
   /**
-   * String representation of the data type, i am including this for debugging purposes it might be useless after the deploying
-   * but i need it during this stage of the development procedure, It is essential.
+   * String representation of the data type.
    * @return toString    the string representation of the object
    */
   public String toString() {

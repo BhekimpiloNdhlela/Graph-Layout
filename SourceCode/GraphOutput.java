@@ -53,13 +53,11 @@ public class GraphOutput {
    * @param rankMaxSize    the integer representing the rank with the most nodes/ vertices
    */
   private void setGraphOutputScale(int rankMaxSize, int numberOfRanks){
-    int xMultiplyFactor = 0;
+    int xMultiplyFactor = 0;                        
     int yMultiplyFactor = 0;
-    if(rankMaxSize > 1000)   { xMultiplyFactor = 10;  }
-    else                     { xMultiplyFactor = 100; }
-
-    if(numberOfRanks > 1000) { yMultiplyFactor = 10;  }
-    else                     { yMultiplyFactor = 100; }
+    
+    xMultiplyFactor = (rankMaxSize   > 1000) ? 10 : 100;
+    yMultiplyFactor = (numberOfRanks > 1000) ? 10 : 100;
 
     if(rankMaxSize > 2000)   {
       rankMaxSize      = rankMaxSize/2;

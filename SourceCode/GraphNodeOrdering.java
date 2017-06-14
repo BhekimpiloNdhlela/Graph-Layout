@@ -83,15 +83,16 @@ public class GraphNodeOrdering {
     int numberOfRanks = rankMap.size();
     //do not consider the sMin rank because it is already ordered
     for(int i = 2; i < numberOfRanks; ++i) {
-      Integer []orderingRank         = rankMap.get(i);                   //ordering rank set
-      Integer []previousRank         = rankMap.get(i - 1);               //previous rank set
-      Double  []orderingIndex        = new Double[orderingRank.length];  //the array to order with respect to.
+      Integer []orderingRank         = rankMap.get(i);                  
+      Integer []previousRank         = rankMap.get(i - 1);               
+      Double  []orderingIndex        = new Double[orderingRank.length];
       maxRankSize = (orderingRank.length > maxRankSize) ? orderingRank.length : maxRankSize;
-      if(orderingRank.length == 1 || previousRank.length == 1) continue; //no need to order ranks of this atribute.
+      if(orderingRank.length == 1 || previousRank.length == 1) continue;
 
       for(int k = 0; k < orderingRank.length; ++k) {
         //edge adjacency list for the ordering element at hand
-        Integer []aEdgeList          = edgeMap.get(orderingRank[k]);            Double indexSumOfAdjEdges    = 0.0;
+        Integer []aEdgeList          = edgeMap.get(orderingRank[k]);   
+        Double indexSumOfAdjEdges    = 0.0;
         for(int l = 0; l < aEdgeList.length; ++l){
           //the sum of the index of nodes adjacent to the ordering rank element at hand.
           indexSumOfAdjEdges = indexSumOfAdjEdges + getNodeIndex(previousRank, aEdgeList[l]) + 1.0 ;
@@ -113,7 +114,7 @@ public class GraphNodeOrdering {
   private double getNodeIndex(Integer[] pRank, Integer nodeToFind) {
     for(int i = 0; i < pRank.length; i++) {
       if(nodeToFind.equals(pRank[i])) return i;
-    } return -1.0;
+    } return -1;
   }
 
   /**

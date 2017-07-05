@@ -45,9 +45,9 @@
      8 -> 6
 
 
-     NOTE: Some of the edges are repeated because i want to illustrate the coloring of the edges that ocur the most.
-     This is specified or breafly explaing at the "What Happens:" Section in the last paragraph.
-
+     NOTE: Some of the edges are repeated because i wanted to illustrate the coloring of the edges that occur the most.
+     This is specified or briefly explained at the "What Happens:" Section, the last paragraph.
+	
 ### Output Image of the Above Graph:
 
  ![Alt text](example_image.png)

@@ -52,6 +52,11 @@
 
  ![Alt text](example_image.png)
 
+
+### Note: Cyclic Graphs
+       Please note that cyclic graphs or networks are not used in this algorithm, The algorithm works for uncyclic graphs or networks. If a cycle is
+       detected in the graph at hand then the program or application will terminate and indicate that a cycle has been detected.
+
 ## Dependancies	:
 
 Graph/ Network Layout depends on classes written by me(Bhekimpilo Ndhlela) which include:
@@ -128,8 +133,3 @@ Execution: java Layout "Path of your desired graph"
      edges between nodes 1 and 2, four edges between nodes 2 and 3, three edges between 1 and 3, and all other edges occur only once. Then you have to draw
      a single edge between 1 and 2, but colour it red, one edge coloured orange between 2 and 3, and one edge coloured dark yellow between 1 and 3. All other
      edges will be black.
-
-
-
-
-

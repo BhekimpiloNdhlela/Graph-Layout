@@ -1,3 +1,4 @@
+package org.graph.layout;
 /******************************************************************************
  *  Compilation:  javac DirectedEdge.java
  *  Execution:    java DirectedEdge

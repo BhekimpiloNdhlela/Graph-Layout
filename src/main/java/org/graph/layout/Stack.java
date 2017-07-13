@@ -1,3 +1,4 @@
+package org.graph.layout;
 /******************************************************************************
  *  Compilation:  javac Stack.java
  *  Execution:    java Stack < input.txt

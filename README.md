@@ -101,19 +101,14 @@ It also depends on the sorting algorithms libraries from Princeton University, I
        
   
 ## How and What To Compile:
-Compilation	: javac Layout.java
-
-Ignore The Following notes and execute.
-
-     Note: Some input files use unchecked or unsafe operations.
-
-     Note: Recompile with -Xlint:unchecked for details.
+This is a maven project.
+Compliation: Run "mvn package" to produce a runnable jar. 
+             Run "mvn -Dtest=LayoutUnitTester test" to run unit test
 
 
-Execution: java Layout "Path of your desired graph"
+Execution: cd target
+           java -jar Graph-Layout-1.0-jar-with-dependencies.jar ../testCases/SMALL\ GRAPHS/SpecSample.txt 
        
-     For Example: java ImageSort ~/LocalRepo/testCases/SpecGraph.txt
-
     
 ## What Happens(Briefly):
 

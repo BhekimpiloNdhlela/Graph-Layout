@@ -1,3 +1,4 @@
+package org.graph.layout;
 /******************************************************************************
  *  Compilation:  javac Bag.java
  *  Execution:    java Bag < input.txt

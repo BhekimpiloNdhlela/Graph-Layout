@@ -1,3 +1,4 @@
+package org.graph.layout;
 /**
  *  The {@code Merge} class provides static methods for sorting an
  *  array using mergesort.
